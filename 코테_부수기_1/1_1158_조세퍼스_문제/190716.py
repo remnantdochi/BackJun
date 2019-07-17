@@ -13,9 +13,9 @@ class clist:
         self.tail = self.tail.next
     def delete(self,point): #그전에서 지울래 ㅠ
         #print("what to delete",point.next.data)
-        if point.next != point.next.next:
-            point.next = point.next.next
-        else: point.next = None
+        #if point.next != point.next.next:
+        point.next = point.next.next
+        #else: point.next = None
 N, K = map(int,input().split())
 people = clist(node("1",None))
 
@@ -24,16 +24,21 @@ for i in range(2,N+1):
 people.tail.next = people.head
 tpoint = people.head
 
-result = []
+#result = []
 cnt = 1
-
-while tpoint != None:
+res = 0
+print("<",end="")
+while res != N-1:
     #print(tpoint.data)
     if cnt == K-1:
-        result.append(tpoint.next.data)
+        #result.append(tpoint.next.data)
+        print(tpoint.next.data,end=", ")
+        #print(tpoint.next.data,end="")
         people.delete(tpoint)
         cnt = 1
+        res+=1
     else:
         cnt+=1
     tpoint = tpoint.next
-print("<"+", ".join(result)+">")
+print(tpoint.next.data+">")
+#print("<"+", ".join(result)+">")
