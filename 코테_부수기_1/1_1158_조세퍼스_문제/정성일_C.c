@@ -4,7 +4,7 @@ int main() {
 	int n, k;  //사람 수 N, 건너뛰는 칸 K
 	int m_state[5001] = { .0 };  //사람 상태
 	int m_end=1;  //종료 판별 변수
-	int i  //사람 카운트
+	int i;  //사람 카운트
 	int j=0;  //위치 기억, 1이 첫번째 사람
 
 	scanf("%d %d", &n, &k);  //변수 입력
