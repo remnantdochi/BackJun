@@ -78,7 +78,7 @@ int main()
 		room_size[room_num] = size_;
 		size_ = 0;
 	}
-	for (int i = 1; i <= room_num; i++)
+	for (int i = 1; i <= room_num; i++) // 걍 선택정렬
 	{
 		for (int j = i; j <= room_num; j++)
 		{
