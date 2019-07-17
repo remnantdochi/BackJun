@@ -1,9 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <iostream>
-#include <algorithm>
-#include <vector>
-#include <cstdlib>
 #include <stdlib.h>
 
 using namespace std;
@@ -17,22 +14,10 @@ typedef struct node
 void add(int item, NODE** h, NODE** t) // 맨 뒤에 추가
 {
 	NODE* newitem = (NODE*)malloc(sizeof(NODE));
-	/*if (h->next == NULL)
-	{
-		h->next = newitem;
-		newitem->number = item;
-		newitem->next = h->next;
-		t->number = newitem->number;
-		t->next = newitem->next;
-
-	}
-	else
-	{*/
 	(*t)->next = newitem;
 	newitem->number = item;
 	newitem->next = (*h)->next;
 	(*t) = newitem;
-	//}
 }
 //포인터의 값을 바꾸려면 이중 포인터
 //구조체는 그 자체로 주소값 가르키는 얘!
@@ -42,7 +27,7 @@ int main() {
 	tail->next = tail;
 	NODE* head = (NODE*)malloc(sizeof(NODE));
 	head->next = tail;
-	
+
 
 	int n, k, count = 0;
 	cin >> n >> k;
@@ -61,7 +46,7 @@ int main() {
 	while (temp->next != temp->next->next)
 	{
 		if (cnt == k - 1) {
-			cout << temp->next->number<<", ";
+			cout << temp->next->number << ", ";
 			temp->next = temp->next->next;
 			cnt = 1;
 		}
@@ -70,7 +55,7 @@ int main() {
 		}
 		temp = temp->next;
 	}
-	cout << temp->next;
+	cout << temp->next->number;
 	cout << '>';
 
 
