@@ -6,50 +6,82 @@
 #include <algorithm>
 #include <vector>
 #include <cstdlib>
+#include <stdlib.h>
 
 using namespace std;
 
-struct node {
-	int data = 0;
-	node* next, * prev;
-	node() {
-		next = prev = NULL;
-		data = 0;
-	}
-	node(int item, node* ptr) { //ptr 뒤에 추가
-		data = item;
-		prev = ptr;
-		next = ptr->next;
-		next->prev = prev->next = this;
-	}
-	void Dnode() {
-		prev->next = next; //여기서 prev랑 next는 어케 알지?
-		next->prev = prev;
-		delete this;
-	}
-};
+typedef struct node
+{
+	int number;
+	struct node* next;
+}NODE;
 
-struct Dlinked {
-	node* head;
-	node* tail;
+/*void insert(int item, int k, NODE* h) //k번째 노드 뒤에 삽입
+{
+	NODE* newitem = (NODE*)malloc(sizeof(NODE));
+	int cnt = 1;
+	NODE* node_ptr = (NODE*)malloc(sizeof(NODE));
+	node_ptr= h->next;
+	
+	while (cnt != k || node_ptr != h->next){
+		node_ptr = node_ptr->next;
+		cnt++;
+	}
 
-	Dlinked() {
-		int count = 0;
-		head = new node();
-		tail = new node();
-		head->next = tail;
-		tail->prev = head;
+	newitem->number = item;
+	newitem->next = node_ptr->next;
+	node_ptr->next = newitem;
+
+	free(node_ptr);
+}*/
+
+
+
+void add(int item, NODE* h, NODE* t) // 맨 뒤에 추가
+{
+	NODE* newitem = (NODE*)malloc(sizeof(NODE));
+	if ( h->next== NULL)
+	{
+		h->next = newitem;
+		newitem->number = item;
+		newitem->next = h->next;
+		t->number = newitem->number;
+		t->next = newitem->next;
+
 	}
-	void insert(int item) { //tail 뒤 추가
-		new node(item, tail);
+	else
+	{
+		t->next = newitem;
+		newitem->number = item;
+		newitem->next = h->next;
+		t = newitem;
 	}
-};
+}
 
 int main() {
+	NODE* head=(NODE*)malloc(sizeof(NODE));
+	head->next = NULL;
+	head->number = 0;
+	NODE* tail = (NODE*)malloc(sizeof(NODE));
+	
+
 	int n, k, count = 0;
 	cin >> n >> k;
-	Dlinked* people = new Dlinked();
-	printf("test1");
-	for (int i = 1; i <= n; i++)people->insert(i);
-	printf("%d ", people->head);
+
+	for (int i = 0;i < n;i++)
+	{
+		add(i + 1, head, tail);
+	}
+
+	NODE* temp = (NODE*)malloc(sizeof(NODE));
+	temp = head->next;
+	for (int i = 0;i < n;i++)
+	{
+		NODE* temp = (NODE*)malloc(sizeof(NODE));
+		
+		cout << temp->number;
+		temp = temp->next;
+	}
+	
+
 }
