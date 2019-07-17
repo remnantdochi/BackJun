@@ -16,12 +16,12 @@ void DFS(int** mat, int* visit, int k) // k번째 정점을 시작으로하는 D
 	{
 		if (mat[k][i] == 1)
 		{
-			if (visit[i] != 1) //방문하지 않은 정점이라면, 그 정점을 지나 계속해서 탐색한다.
+			if (visit[i] != 1) //방문하지 않은 정점이라면, 그 정점을 통해 계속해서 탐색한다.
 			{
 				visit[i] = 1;
 				DFS(mat, visit, i);
 			}
-			else //이미 방문한 정점이라면 건너뛰고 다음 정점을 탐색한다
+			else //이미 방문한 정점이라면 건너뛰고 다음 정점을 탐색한다.
 				continue;
 		}
 		else
