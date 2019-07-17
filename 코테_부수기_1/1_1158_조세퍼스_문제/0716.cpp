@@ -1,5 +1,3 @@
-//참고https://zoomkoding.github.io/codingtest/2019/06/29/baekjoon-1158.html
-
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <iostream>
@@ -16,31 +14,10 @@ typedef struct node
 	struct node* next;
 }NODE;
 
-/*void insert(int item, int k, NODE* h) //k번째 노드 뒤에 삽입
+void add(int item, NODE** h, NODE** t) // 맨 뒤에 추가
 {
 	NODE* newitem = (NODE*)malloc(sizeof(NODE));
-	int cnt = 1;
-	NODE* node_ptr = (NODE*)malloc(sizeof(NODE));
-	node_ptr= h->next;
-	
-	while (cnt != k || node_ptr != h->next){
-		node_ptr = node_ptr->next;
-		cnt++;
-	}
-
-	newitem->number = item;
-	newitem->next = node_ptr->next;
-	node_ptr->next = newitem;
-
-	free(node_ptr);
-}*/
-
-
-
-void add(int item, NODE* h, NODE* t) // 맨 뒤에 추가
-{
-	NODE* newitem = (NODE*)malloc(sizeof(NODE));
-	if ( h->next== NULL)
+	/*if (h->next == NULL)
 	{
 		h->next = newitem;
 		newitem->number = item;
@@ -50,38 +27,51 @@ void add(int item, NODE* h, NODE* t) // 맨 뒤에 추가
 
 	}
 	else
-	{
-		t->next = newitem;
-		newitem->number = item;
-		newitem->next = h->next;
-		t = newitem;
-	}
+	{*/
+	(*t)->next = newitem;
+	newitem->number = item;
+	newitem->next = (*h)->next;
+	(*t) = newitem;
+	//}
 }
-
+//포인터의 값을 바꾸려면 이중 포인터
+//구조체는 그 자체로 주소값 가르키는 얘!
 int main() {
-	NODE* head=(NODE*)malloc(sizeof(NODE));
-	head->next = NULL;
-	head->number = 0;
 	NODE* tail = (NODE*)malloc(sizeof(NODE));
+	tail->number = 1;
+	tail->next = tail;
+	NODE* head = (NODE*)malloc(sizeof(NODE));
+	head->next = tail;
 	
 
 	int n, k, count = 0;
 	cin >> n >> k;
 
-	for (int i = 0;i < n;i++)
+	for (int i = 1;i < n;i++)
 	{
-		add(i + 1, head, tail);
+		add(i + 1, &head, &tail);
 	}
 
 	NODE* temp = (NODE*)malloc(sizeof(NODE));
 	temp = head->next;
-	for (int i = 0;i < n;i++)
+	int cnt = 1;
+	int res = 0;
+	cout << '<';
+
+	while (temp->next != temp->next->next)
 	{
-		NODE* temp = (NODE*)malloc(sizeof(NODE));
-		
-		cout << temp->number;
+		if (cnt == k - 1) {
+			cout << temp->next->number<<", ";
+			temp->next = temp->next->next;
+			cnt = 1;
+		}
+		else {
+			cnt++;
+		}
 		temp = temp->next;
 	}
-	
+	cout << temp->next;
+	cout << '>';
+
 
 }
