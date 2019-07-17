@@ -1,21 +1,30 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <queue>
 using namespace std;
 
-int N,K,cnt;
-queue<int> que;
-int main() {
-  cnt=0;
-  cin >> N >> K;
-  for(int i=1; i<=N; i++) que.push(i);
-  cout << '<';
-  while(que.size()!=1) {
-    int t=que.front();
-    que.pop();
-    if(++cnt==K) {
-      cout << t << ", ";
-      cnt=0;
-    } else que.push(t);
-  }
-  cout << que.front() << '>';
-  return 0;
+int main(void)
+{
+	//n명 k번째
+	int N, K;	cin >> N >> K; int k = 0;
+	deque<int> q;
+	for (int i = 1; i <= N; i++)
+		q.push_front(i);
+	cout << "<";
+	while (!q.empty())
+	{
+		if (k != 0 && !q.empty())
+		{
+			cout << ", ";
+		}
+		k = 1;
+		for (int i = 0; i < K - 1; i++)
+		{
+			q.push_front(q.back());//뒤에있는걸 앞으로 넣는다.
+			q.pop_back();
+		}
+		cout << q.back();
+		q.pop_back();
+	}
+	cout << ">";
+	return 0;
 }
