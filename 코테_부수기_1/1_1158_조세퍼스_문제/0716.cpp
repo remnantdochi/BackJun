@@ -38,18 +38,18 @@ int main() {
 	}
 
 	NODE* temp = (NODE*)malloc(sizeof(NODE));
-	temp = head;
+	temp = tail;
 	int cnt = 0;
-	int res = 0;
 	cout << '<';
 
-	while (res != n-1)
+	while (temp->next != temp->next->next)
 	{
 		if (cnt >= k-1) {
 			cout << temp->next->number << ", ";
+			NODE* dnode = temp->next;
 			temp->next = temp->next->next;
 			cnt = 0;
-			res+=1;
+			free(dnode);
 		}
 		else {
 			cnt++;
@@ -59,5 +59,6 @@ int main() {
 	}
 	cout << temp->next->number << '>';
 
+	free(head);
 
 }
