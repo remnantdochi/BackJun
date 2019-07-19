@@ -97,7 +97,7 @@ int main()
 	char* Alphabet = new char[C]; //Array that store all the given letters.
 	char* buffer = new char[L];//Array that store password candidate temporary.
 	int * pos = new int[L]; //Array that store position of character in Alphabet.
-	// ex) if(L=2 && Alphabet="apple" &&  pos[0]=0, pos[1]=3) THEN buffer[Alphabet[pos[0]]='a', buffer[Alphabet[pos[1]]='l'
+	// ex) if(L=2 && Alphabet="apple" &&  pos[0]=0, pos[1]=2) THEN buffer[Alphabet[pos[0]]='a', buffer[Alphabet[pos[1]]=''
 
 	init(Alphabet, buffer, pos); //Initialize arrays. 
 	int& last = pos[L - 1]; // last<=>pos[L-1]
