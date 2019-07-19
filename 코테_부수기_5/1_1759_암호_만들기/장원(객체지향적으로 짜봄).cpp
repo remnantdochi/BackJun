@@ -1,3 +1,5 @@
+//본 코드에서는 재귀함수를 사용하지않았지만, 재귀함수를 사용해서 암호를 구하는 함수를 반드시 한번 짜보자!
+
 #include <iostream>
 #include<cstring>
 #include<string>
