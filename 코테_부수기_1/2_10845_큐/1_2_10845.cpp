@@ -35,7 +35,7 @@ int poping(QUE* line) {
 	int value = line->front->number;
 	NODE* dNode = line->front;
 	line->front = line->front->prev;
-	//free(dNode);
+	free(dNode);
 	if (line->quesize == 1) line->rear = NULL; //1개만 남았을때
 	line->quesize--;
 	return value;
