@@ -9,7 +9,7 @@ using namespace std;
 
 int L, C; //L: Lenth of password. C: Length of given letters.
 
-//check_: At least one vowel must included && At least two consonant must be included. 
+//check_: At least one vowel must be included && At least two consonant must be included. 
 bool check_(char* buffer)
 {
 	bool flag = true;
