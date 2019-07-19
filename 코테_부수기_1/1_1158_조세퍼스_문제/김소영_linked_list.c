@@ -93,3 +93,54 @@ int main() {
 	free(cur);
 
 }
+/* 정성일 피드백
+전역변수는 나중에 여러 스레드가 합쳐질때 간섭여지가 많아서
+최대한 사용 지양
+
+n,k,i,j는 main에 넣어도 문제 없고
+list_size도 가감코드를 노드함수에서 호출전으로 옮기면 문제 없을거라 생각
+	ex)
+	list_size++;
+	CreateNode(i);
+
+------------------------------------------------------------------------------
+
+최초 노드 생성시 조건문을 줄일 수 있음
+cur=CreateNode(1);
+for(i = 2; i <= n; i++){
+	cur=AddNode(cur,i);
+}
+
+-----------------------------------------------------------------------------
+
+(focus) - (focus+1) - (focus+2)
+노드가 있다고 할때
+deleteNode에서 (focus+1) 삭제후
+(focus+2)가 아닌 (focus)를 반환하면
+k=1까지 일반화가 가능
+
+기존
+focus->next->data      하면 (focus+1)출력
+delete(focus)             하면 (focus+1)삭제후 (focus+2)반환
+focus->data              해야 (focus+2)가 나옴
+
+수정
+focus->next->data      하면 (focus+1)출력
+delete(focus)             하면 (focus+1)삭제후 (focus)반환
+focus->next->data      하면 (focus+2)가 나옴
+
+즉 코드를
+
+//cur을 tail에 남겨두고
+//cur = cur->next; 삭제
+while (list_size > 1) {
+	for(j=1;j<k;j++){                            //k가 1일때는 실행 안 함
+		cur = cur -> next;
+	}
+	printf("%d ,", cur -> next -> data);
+	list_size--;                                   //deleteNode에서 빼옴
+	cur = deleteNode(cur);
+}
+로 수정 가능
+-----------------------------------------------------------------------------
+*/
