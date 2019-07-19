@@ -20,7 +20,7 @@ void add(int item, NODE** h, NODE** t) // 맨 뒤에 추가
 	(*t) = newitem;
 }
 //포인터의 값을 바꾸려면 이중 포인터
-//구조체는 그 자체로 주소값 가르키는 얘!
+//구조체의 값을 바꾸려면 주소값으로 간다
 int main() {
 	NODE* tail = (NODE*)malloc(sizeof(NODE));
 	tail->number = 1;
