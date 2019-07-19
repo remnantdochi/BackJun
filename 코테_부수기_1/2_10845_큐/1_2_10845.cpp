@@ -24,9 +24,9 @@ void pushing(int item, QUE* line) {
 		line->front = nNode;
 		line->rear = line->front;
 	}
-	else { 
-		line->rear->prev = nNode;
-		line->rear = nNode; 
+	else {
+		line->rear->next = nNode;
+		line->rear = nNode;
 	}
 	line->quesize++;
 }
@@ -34,7 +34,7 @@ int poping(QUE* line) {
 	if (line->front == NULL) return -1;
 	int value = line->front->number;
 	NODE* dNode = line->front;
-	line->front = line->front->prev;
+	line->front = line->front->next;
 	free(dNode);
 	if (line->quesize == 1) line->rear = NULL; //1개만 남았을때
 	line->quesize--;
@@ -54,7 +54,7 @@ int empty(QUE* line) {
 	return 1;
 }
 
-void main() {
+int main() {
 	int N; //command 갯수
 	cin >> N;
 	QUE* problem = (QUE*)malloc(sizeof(QUE));
@@ -77,4 +77,5 @@ void main() {
 
 	}
 	free(problem);
+	return 0;
 }
