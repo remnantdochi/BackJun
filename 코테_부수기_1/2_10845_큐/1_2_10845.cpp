@@ -35,16 +35,18 @@ int poping(QUE* line) {
 	int value = line->front->number;
 	NODE* dNode = line->front;
 	line->front = line->front->next;
-	free(dNode);
 	if (line->quesize == 1) line->rear = NULL; //1개만 남았을때
+	free(dNode);
 	line->quesize--;
 	return value;
 }
 int front(QUE* line) {
-	return line->front->number;
+	if (line->front != NULL) return line->front->number;
+	return -1;
 }
 int back(QUE* line) {
-	return line->rear->number;
+	if (line->front != NULL) return line->rear->number;
+	return -1;
 }
 int size(QUE* line) {
 	return line->quesize;
