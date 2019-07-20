@@ -1,3 +1,6 @@
+/*문제 1759_암호_만들기에서는 본 문제와 동일한 유형이지만 재귀함수를 이용하지 않았다. 둘 다 장담점이 뚜렷하여 섞어쓰는것도 좋지만,
+사실 최대한 재귀함수를 사용하지 않고 문제를 푸는것이 좋은 습관이다.*/ 
+
 #include <iostream>
 #include<cstring>
 #include<string>
@@ -40,8 +43,9 @@ void find_(int* array, int* visit, int num, int idx, int direction) {
 	find_(array, visit, num + 1, idx + 1, UP); //UP방향이면 다음 인덱스의 값을 포함한다.(num:=num+1)
 	visit[idx+1] = 0;
 	find_(array, visit, num, idx + 1, DOWN);//DOWN방향이면 다음 인덱스의 값을 포함하지 않는다.(num:=num)
+	//시간복잡도는 최악의 경우 모든 원소에 대해 그 원소를 포함하거나 포함하지않거나 두 가지 경우가 있으므로 2^9이다. 
 }
-
+/*재귀함수를 사용하면 코드가 간결하고 직관적이다! 그러나 위험하다. 문제 1759_암호만들기와 비교.*/
 int main()
 {
 	int array[9];
