@@ -40,7 +40,7 @@ void find_(int* array, int* visit, int num, int idx, int direction) {
 	visit[idx+1] = 0;
 	find_(array, visit, num, idx + 1, DOWN);//DOWN방향이면 다음 인덱스의 값을 포함하지 않는다.(num:=num)
 }
-
+//왜 항상 오름차순으로 나오는지도 생각해보자.
 int main()
 {
 	int array[9];
