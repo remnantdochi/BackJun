@@ -1,0 +1,54 @@
+#include <iostream>
+#include<cstring>
+#include<string>
+#include<algorithm>
+#define UP 1
+#define DOWN 0
+
+using namespace std;
+bool check_(int* array, int* visit)
+{
+	int sum = 0;
+	for (int i = 0; i < 9; i++) {
+		if (visit[i] == 1) {
+			sum += array[i];
+		}
+	}
+	if (sum == 100)
+	{
+		for (int i = 0; i < 9; i++) {
+			if (visit[i])
+				cout << array[i] << endl;
+		}
+		return true;
+	}
+	return false;
+}
+
+
+int flag = 0; //flag가 1이면 일곱 난쟁이를 찾았다는 뜻.
+
+void find_(int* array, int* visit, int num, int idx, int direction) {
+
+	if(direction==UP) visit[idx] = 1;
+	if (flag) return; 
+	if (idx > 8) return; 
+	if (num > 7) return;
+	if (num == 7) {
+		if (check_(array, visit)) { flag = 1; return; }
+	}
+	find_(array, visit, num + 1, idx + 1, UP); //UP방향이면 다음 인덱스의 값을 포함한다.(num:=num+1)
+	visit[idx+1] = 0;
+	find_(array, visit, num, idx + 1, DOWN);//DOWN방향이면 다음 인덱스의 값을 포함하지 않는다.(num:=num)
+}
+
+int main()
+{
+	int array[9];
+	for (int i = 0; i < 9; i++)
+		cin >> array[i];
+	int visit[9+1] = {0, };
+	sort(array, array + 9);
+	find_(array, visit, 0, -1, DOWN);
+	return 0;
+}
