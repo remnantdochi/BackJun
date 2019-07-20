@@ -17,8 +17,7 @@ bool check_(int* array, int* visit)
 			sum += array[i];
 		}
 	}
-	if (sum == 100)
-	{
+	if (sum == 100){
 		for (int i = 0; i < 9; i++) {
 			if (visit[i])
 				cout << array[i] << endl;
@@ -28,24 +27,20 @@ bool check_(int* array, int* visit)
 	return false;
 }
 
+int flag = 0; // 일곱 난쟁이를 찾으면 flag=1로 갱신된다.
 
-int flag = 0; //flag가 1이면 일곱 난쟁이를 찾았다는 뜻.
-
-void find_(int* array, int* visit, int num, int idx, int direction) {
+void find_(int* array, int* visit, int num, int idx, int direction) { 
 
 	if(direction==UP) visit[idx] = 1;
-	if (flag) return; 
-	if (idx > 8) return; 
-	if (num > 7) return;
+	if (flag || idx > 8 || num > 7) return;
 	if (num == 7) {
 		if (check_(array, visit)) { flag = 1; return; }
 	}
 	find_(array, visit, num + 1, idx + 1, UP); //UP방향이면 다음 인덱스의 값을 포함한다.(num:=num+1)
 	visit[idx+1] = 0;
 	find_(array, visit, num, idx + 1, DOWN);//DOWN방향이면 다음 인덱스의 값을 포함하지 않는다.(num:=num)
-	//시간복잡도는 최악의 경우 모든 원소에 대해 그 원소를 포함하거나 포함하지않거나 두 가지 경우가 있으므로 2^9이다. 
 }
-/*재귀함수를 사용하면 코드가 간결하고 직관적이다! 그러나 위험하다. 문제 1759_암호만들기와 비교.*/
+
 int main()
 {
 	int array[9];
