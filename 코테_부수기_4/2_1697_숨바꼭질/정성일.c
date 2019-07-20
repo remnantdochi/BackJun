@@ -14,6 +14,7 @@
 //  즉시 찾아볼 수 있다.
 //  visit_mat[n] = 0;  n정점 미방문
 //  visit_mat[n] = 1;  n정점 방문
+////////////////////////////////////////////////////////////////////////////////
 
 // head, tail은 큐의 head, tail
 void bfs(int* level, int* visit, int* visit_mat, int k, int head, int tail) {
