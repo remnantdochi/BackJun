@@ -17,7 +17,7 @@ bool check_1(int* comb, int idx) //중복검사
 	*/
 }
 
-bool check_2(int* comb, char* symbol, int idx)
+bool check_2(int* comb, char* symbol, int idx) //부등호 검사
 {
 	if (symbol[idx - 2] == '<'){
 		if (comb[idx - 2] < comb[idx - 1])
@@ -33,7 +33,7 @@ bool check_2(int* comb, char* symbol, int idx)
 	}
 }
 
-void compare_(int* comb, int idx, int* MAX_comb, int* MIN_comb)
+void compare_(int* comb, int idx, int* MAX_comb, int* MIN_comb) //MAX값과 MIN값의 비교.
 {
 	for (int i = 0; i < idx; i++){
 		if (comb[i] < MAX_comb[i])
@@ -61,7 +61,7 @@ void compare_(int* comb, int idx, int* MAX_comb, int* MIN_comb)
 	}	
 }
 
-void function(int* comb, char* symbol,int idx, int* MAX_comb, int* MIN_comb)
+void function(int* comb, char* symbol,int idx, int* MAX_comb, int* MIN_comb) //재귀함수를 이용.
 {
 	if (idx >= 2){
 		if ((!check_1(comb,idx))||(!check_2(comb,symbol,idx)))
