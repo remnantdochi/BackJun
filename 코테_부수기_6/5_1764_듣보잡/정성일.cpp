@@ -6,24 +6,33 @@
 // 1  k l m n o p q r s t
 // 2  u v w x y z
 
+///////////////////////////////////////
+// 트리 노드
+///////////////////////////////////////
 struct Node {
-	int data;
-	struct Node** tree;
+	int data;  //데이터
+	struct Node** tree;  //간선 26개
 };
 
+///////////////////////////////////////
+// 트리 노드 생성
+///////////////////////////////////////
 struct Node* add_node() {
 	struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
 	int i;
 
-	new_node->data = 0;
-	new_node->tree = (struct Node**)malloc(sizeof(struct Node*) * 26);
-	for (i = 0; i < 26; i++) {
+	new_node->data = 0; //0 지나간 경로, 1 트리 끝, 2 일치하는 이름 
+	new_node->tree = (struct Node**)malloc(sizeof(struct Node*) * 26);  //간선 26개 할당
+	for (i = 0; i < 26; i++) {  //간선 기본적으로 없음으로 설정
 		new_node->tree[i] = NULL;
 	}
 
 	return new_node;
 }
 
+///////////////////////////////////////
+// 트리 노드 할당 해제
+///////////////////////////////////////
 void free_node(struct Node* node) {
 	int i = 0;
 	if (node != NULL) {
@@ -36,6 +45,9 @@ void free_node(struct Node* node) {
 	}
 }
 
+///////////////////////////////////////
+// 트리 생성
+///////////////////////////////////////
 void make_tree(struct Node* node, char* name, int focus, int len) {
 	int i;
 	int branch;
@@ -54,13 +66,16 @@ void make_tree(struct Node* node, char* name, int focus, int len) {
 	}
 }
 
+///////////////////////////////////////
+// 트리 탐색
+///////////////////////////////////////
 int search_tree(struct Node* node, char* name, int focus, int len) {
 	int i;
 	int branch;
 
 	if (focus == len) {
-		if (node->data == 1) {
-			node->data = 2;
+		if (node->data == 1) {  // 이름이 같으면
+			node->data = 2;  //데이터 변경
 			return 1;
 		}
 		return 0;
@@ -78,6 +93,9 @@ int search_tree(struct Node* node, char* name, int focus, int len) {
 	}
 }
 
+///////////////////////////////////////
+// 트리중 겹치는 이름 출력
+///////////////////////////////////////
 void print_tree(struct Node* node, char* name, int focus) {
 	int i = 0;
 
@@ -105,22 +123,23 @@ int main() {
 	int len;
 	int cnt = 0;
 
-	head = add_node();
-	scanf("%d %d", &n, &m);
+	head = add_node();  //트리 시작점 생성
+	scanf("%d %d", &n, &m);  //이름 갯수 입력
 	for (i = 0; i < n; i++) {
 		scanf("%s", name);
 		len = strlen(name);
-		make_tree(head, name_ptr, 0, len);
+		make_tree(head, name_ptr, 0, len);  //이름 트리 생성
 	}
 	for (i = 0; i < m; i++) {
 		scanf("%s", name);
 		len = strlen(name);
-		if (search_tree(head, name_ptr, 0, len)==1) {
-			cnt++;
+		if (search_tree(head, name_ptr, 0, len)==1) {  //일치하는 이름 있으면
+			cnt++;  //카운트
 		}
 	}
 	printf("%d\n", cnt);
-	print_tree(head, name_ptr, 0);
-	free_node(head);
+	print_tree(head, name_ptr, 0);  //겹치는 이름 출력
+	free_node(head);  //할당 해제
+
 	return 0;
 }
