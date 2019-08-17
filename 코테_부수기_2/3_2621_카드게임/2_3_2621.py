@@ -22,12 +22,13 @@ elif len(dictc) == 1: scores.append(numbers[4] + 600)
 elif 4 in dictn.values():
     scores.append(numbers[1]+800)
 elif 3 in dictn.values():
-    if dictn[numbers[0]] == 3 :
-        if dictn[numbers[3]] == 2: scores.append(numbers[0]*10+numbers[3]+700)
+    if dictn[numbers[0]] == 3 : #111??
+        if dictn[numbers[3]] == 2: scores.append(numbers[0]*10+numbers[3]+700) #11122
         else : scores.append(numbers[0]+400)
-    elif dictn[numbers[2]] == 3:
-        if dictn[numbers[0]] == 2 : scores.append(numbers[0]+numbers[2]*10+700)
-        else : scores.append(numbers[2]+400)
+    elif dictn[numbers[4]] == 3: #11222
+        if dictn[numbers[0]] == 2 : scores.append(numbers[0]+numbers[2]*10+700) #11222
+        else : scores.append(numbers[4]+400) #12333
+    else : scores.append(numbers[2]+400) #12223
 elif 2 in dictn.values():
     if dictn[numbers[0]] ==2: #aa???
         if dictn[numbers[2]] == 2 and dictn[numbers[4]] == 1: #aabbc
