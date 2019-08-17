@@ -1,0 +1,7 @@
+Debug/
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+.vs/
+*.sln
+/코테_부수기_1/1_1158_조세퍼스_문제/0717.c
