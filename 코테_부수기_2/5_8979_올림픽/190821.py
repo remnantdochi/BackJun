@@ -6,6 +6,7 @@ for i in range(N):
     inputs[i] = list(map(int,input().split()))
 medals = list(zip(*inputs))
 
+#print('original medal', medals)
 # 일단 금메달부터
 gold = [medals[1],medals[0]]
 goldorder = list(zip(*gold))
@@ -34,15 +35,17 @@ for item in goldorder:
         current = item[0]
         #print('not same', item, score, currentsame)
 if len(currentsame) != 1 : goldsame.append(currentsame)
-#print(order)
-#print(goldsame)
+# print('after gold')
+# print(order)
+# print(goldsame)
 
 #은메달 : 금메달에서 순위가 결정되지 않은 얘들만
+silversame = [] #>>bronze
 for silverorder in goldsame:
 
     silverorder.sort(reverse = True)
     #print('silver',silverorder)
-    silversame = []
+    #silversame = []
     current = silverorder[0][0]
     currentsame = []
     currentnum = 0
@@ -62,9 +65,11 @@ for silverorder in goldsame:
             currentnum = 1
             current = item[0]
             #print('not same', item, score, currentsame)
-if len(currentsame) != 1 : silversame.append(currentsame)
-#print('order',order)
-#print('silversame',silversame)
+    if len(currentsame) != 1 : silversame.append(currentsame)
+#     print('silver',silverorder,silversame,currentsame)
+# print('after silver')
+# print(order)
+# print(silversame)
 
 for bronzeorder in silversame:
     bronzeorder.sort(reverse= True)
@@ -75,12 +80,12 @@ for bronzeorder in silversame:
         if current == item[0]:
             order[item[1]-1] += score
             currentnum +=1
-            #print('same',item,score,currentsame)
+            #print('same',item,score,current)
         else :
             score += currentnum
             order[item[1]-1] += score
             currentnum = 1
             current = item[0]
-            #print('not same', item, score, currentsame)
+            #print('not same', item, score, current)
 
 print(order[K-1]+1)
