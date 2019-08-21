@@ -4,6 +4,7 @@ order = [0]*N
 
 for i in range(N):
     inputs[i] = list(map(int,input().split()))
+inputs.sort()
 medals = list(zip(*inputs))
 
 #print('original medal', medals)
